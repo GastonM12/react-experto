@@ -1,0 +1,22 @@
+import { jwtDecode } from "jwt-decode";
+import type { User } from "../../auth/models/AuthState";
+
+const tokenKey = 'token';
+
+export class TokenStorage{
+    static getToken(): string | null{
+        return localStorage.getItem(tokenKey);
+    }
+   static setToken(token: string): void{
+    if(token==""){
+      throw new Error("Token cannot be empty");
+    }
+        localStorage.setItem(tokenKey, token);
+    }
+   static removeToken(): void{
+        localStorage.removeItem(tokenKey);
+    }
+   static decodeToken(token: string): User{
+    return jwtDecode(token)
+   }
+}
