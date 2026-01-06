@@ -14,3 +14,5 @@ export class CharacterService {
   }
   
 }
+
+export const characterService = new CharacterService();
